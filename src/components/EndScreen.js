@@ -3,8 +3,7 @@ import "../App.css";
 import { useContext } from "react";
 import { GameStateContext } from "../helpers/Contexts";
 import "bootstrap/dist/css/bootstrap.min.css";
-
-
+import axios from "axios";
 
 const EndScreen = () => {
   const { setScore, setGameState } = useContext(

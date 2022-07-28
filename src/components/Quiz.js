@@ -1,17 +1,35 @@
 import "../App.css";
 import { Questions } from "../helpers/Questions";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useContext } from "react";
 import { GameStateContext } from "../helpers/Contexts";
 import "bootstrap/dist/css/bootstrap.min.css";
+import axios from "axios";
 
 function Quiz() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [optionChosen, setOptionChosen] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState([]);
 
   const { score, setScore, setGameState } =
-    useContext(GameStateContext);
-    
+  useContext(GameStateContext);
+
+
+useEffect(() => {
+  setLoading(true);
+  axios ({
+      method: "POST",
+      url: "https://api.beeshopify.com/easyfishoil-quizs/add",
+  })
+      .then((res) => {
+      console.log(res.data);
+      setData(res.data);
+  })
+      .catch((e) => console.log(e))
+      .finally(() => setLoading(false));
+  }, []);
+
 
   const chooseOption = (option) => {
     setOptionChosen(option);
@@ -50,13 +68,21 @@ function Quiz() {
       <div className="container px-4 md:px-0 mx-auto">
         <div className="space-y-10">
           <div className="w-4/4 md:w-2/4 mx-auto space-y-4">
+          {data.map((add)=> ( 
+          <div key={add.id} className="card">
+           <div className="card-description">
+               <h6>{add.childAge}</h6>
+               <h6>{`Price: ${add.gender}`}</h6>
+           </div>
+          </div>
+          ))}
             <img
               alt="description of image"
               className="rounded-3xl"
               src={Questions[currentQuestion].images}
             />
             <h1 className="bg-white p-8 rounded-3xl text-gray-700 text-xl text-left">
-              {Questions[currentQuestion].prompt}
+            {Questions[currentQuestion].prompt}
             </h1>
             <div 
             className="flex flex-col justify-center gap-2">
