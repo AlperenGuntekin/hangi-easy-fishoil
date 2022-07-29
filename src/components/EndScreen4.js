@@ -38,20 +38,20 @@ const EndScreen = () => {
                   <div className="space-y-8">
                     <div className="space-y-4 bg-white p-8 rounded-3xl">
                         <div className="text-2xl text-center">
-                        EasyFishoil
+                        EasyFishoil Q
                         </div>
                         <div>
-                          <img src="easyfishoil.png"></img>
+                          <img src="easyfishoil_Q.png"></img>
                         </div>
                         <div className="text-lg text-left">
-                        Easyfishoil ist das Fischöl, welches die ideale Dosis von Omega-3 und Vitamin D mit einem Mal enthält. Das Vitamin D, welches es enthält, leistet einen Beitrag für die normale Funktion des Immunsystems. Easyfishoil ist geeignet für die Verwendung von Kindern zwischen 3 und 10 Jahren.
+                        EasyFishoil Q ist unser Fischöl mit leichter Anwendung und welches zusätzlich zu den Fettsäuren EPA und DHA, Cholin, B6, B12 und Folsäure enthält. DHA unterstützt die normalen Gehirnfunktionen und schützt die normale Sehkraft. B6 und B12 unterstützen den normalen Stoffwechsel der Energieproduktion und unterstützt die Verringerung von Müdigkeit und Mattigkeit. Easyfishoil Q ist geeignet für die Nutzung von Kindern zwischen 4 und 10 Jahren.
                         </div>
                         <div className="space-y-4">
                           <a href="https://easyfishoil.com/urunler/easyfishoil-q/" target="_blank">
-                            <button className="relative w-full text-white h-16 pt-1 px-5 text-xl rounded-full">DAHA FAZLA BİLGİ ALIN</button>
+                            <button className="relative w-full text-white h-16 pt-1 px-5 text-xl rounded-full">Der Teil, wo Sie detaillierte Informationen erhalten.</button>
                           </a>
                           <div className="text-xs text-gray-400 text-center">
-                          Es ist kein Arzneimittel. Es ist ein Nahrungsergänzungsmittel. Eine ausgewogene und vielfältige Ernährung ist für ein gesundes Leben sehr wichtig. Eine Überdosierung kann abführende Wirkungen haben. Um die aufgeführten Wirkungen zu erzielen, muss ein Kind zwischen 3 und 10 Jahren täglich 1 kaubare Gelkapsel konsumieren.
+                            Es ist kein Arzneimittel. Es ist ein Nahrungsergänzungsmittel. Eine ausgewogene und vielfältige Ernährung ist für ein gesundes Leben sehr wichtig. Eine Überdosierung kann abführende Wirkungen haben. Um die aufgeführten Wirkungen zu erzielen, muss ein Kind zwischen 3 und 10 Jahren täglich 1 kaubare Gelkapsel konsumieren.
                           </div>
                         </div>
                     </div>
@@ -66,7 +66,7 @@ const EndScreen = () => {
                   Easyfishoil ist das Fischöl, welches die ideale Dosis von Omega-3 und Vitamin D mit einem Mal enthält. Das Vitamin D, welches es enthält, leistet einen Beitrag für die normale Funktion des Immunsystems. Easyfishoil ist geeignet für die Verwendung von Kindern zwischen 3 und 10 Jahren.
                   </div>
                   <div className="space-y-4">
-                    <a href="https://easyfishoil.com/urunler/easyfishoil/" target="_blank">
+                    <a href="https://easyfishoil.com/urunler/easyfishoil-q/" target="_blank">
                       <button className="relative w-full text-white h-16 pt-1 px-5 text-xl rounded-full">Der Teil, wo Sie detaillierte Informationen erhalten.</button>
                     </a>
                     <div className="text-xs text-gray-400 text-center text-left">

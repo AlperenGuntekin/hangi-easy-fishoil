@@ -1,16 +1,37 @@
+import axios from "axios";
+import React from "react";
 import "../App.css";
 import { useContext } from "react";
 import { GameStateContext } from "../helpers/Contexts";
 import "bootstrap/dist/css/bootstrap.min.css";
-import axios from "axios";
 
-function Menu() {
+const baseURL = "https://api.beeshopify.com/easyfishoil-quizs/start";
+
+export default function App() {
+  const [post, setPost] = React.useState(null);
   const { gameState, setGameState} = useContext(
-    GameStateContext
-  );
-  
+    GameStateContext);
+
+  React.useEffect(() => {
+    axios.post(`${baseURL}`).then((response) => {
+      setPost(response.data);
+    });
+  }, []);
+
+  function createPost() {
+    axios
+      .post(baseURL, {
+        title: "Hello World!",
+        body: "This is a new post."
+      })
+      .then((response) => {
+        setPost(response.data);
+      });
+  }
+
+  if (!post) return "No post!"
+
   return (
-  
     <div className="bg-background">
       <div className="container px-4 md:px-0 mx-auto">
         <div className="space-y-0">
@@ -22,9 +43,8 @@ function Menu() {
           </div>
           <div className="bg-white p-8 rounded-3xl text-gray-700 text-lg text-left">
             <div className="space-y-4">
-              <p>Her çocuk özeldir ve farklı ihtiyaçları vardır. EasyFishoil, geliştirdiği dört farklı ürünle çocuğunuza balık yağı ve ihtiyacına yönelik vitaminleri bir arada sunuyor.</p>
-              <p>Birkaç soruya cevap vererek hangi EasyFishoil'in çocuğunuza uygun olduğunu öğrenmek ister misiniz? </p>
-              <p>Haydi başlayalım!</p>
+              <p>Wollen Sie wissen welches EasyFishoil für Ihr Kind geeignet ist, indem Sie einige Fragen beantworten? </p>
+              <p>Los fangen wir an!</p>
             </div>
           </div>
           <div className="flex justify-center">
@@ -45,5 +65,3 @@ function Menu() {
     </div>
   );
 }
-
-export default Menu;

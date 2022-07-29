@@ -1,15 +1,11 @@
 import axios from "axios";
 import React from "react";
 import "../App.css";
-import { Questions } from "../helpers/Questions";
+import { Questions2 } from "../helpers/Questions2";
 import { useEffect, useState } from "react";
 import { useContext } from "react";
 import { GameStateContext } from "../helpers/Contexts";
 import "bootstrap/dist/css/bootstrap.min.css";
-import EndScreen from "./EndScreen";
-import EndScreen2 from "./EndScreen2";
-import EndScreen3 from "./EndScreen3";
-import EndScreen4 from "./EndScreen4";
 
 
 const baseURL = "https://api.beeshopify.com/easyfishoil-quizs/add";
@@ -29,9 +25,8 @@ export default function App() {
     setOptionChosen(option);
   };
 
-
   const backQuestion = () => {
-    if (Questions[currentQuestion].asnwer == optionChosen) {
+    if (Questions2[currentQuestion].asnwer == optionChosen) {
       setScore(score + 1);
     }
     setCurrentQuestion(currentQuestion - 1);
@@ -43,27 +38,20 @@ export default function App() {
   };
 
   const nextQuestion = () => {
-    if (Questions[currentQuestion].asnwer == optionChosen) {
+    if (Questions2[currentQuestion].asnwer == optionChosen) {
       setScore(score + 1);
     }
     setCurrentQuestion(currentQuestion + 1);
   };
 
   const finishQuiz = () => {
-    if (Questions[currentQuestion].optionA == optionChosen) {
-     < EndScreen/>
+    if (Questions2[currentQuestion].asnwer == optionChosen) {
+      setScore(score + 1);
     }
-    else if (Questions[currentQuestion].optionB == optionChosen) {
-      < EndScreen2/>
-     }
-     else if (Questions[currentQuestion].optionC == optionChosen) {
-      < EndScreen3/>
-     }
-     else if (Questions[currentQuestion].optionD == optionChosen) {
-      < EndScreen4/>
-     }
+    setGameState("playing3");
   };
   
+
 
   React.useEffect(() => {
     // invalid url will trigger an 404 error
@@ -85,10 +73,10 @@ export default function App() {
             <img
               alt="description of image"
               className="rounded-3xl"
-              src={Questions[currentQuestion].images}
+              src={Questions2[currentQuestion].images}
             />
             <h1 className="bg-white p-8 rounded-3xl text-gray-700 text-xl text-left">
-            {Questions[currentQuestion].prompt}
+            {Questions2[currentQuestion].prompt}
             </h1>
             <div 
             className="flex flex-col justify-center gap-2" 
@@ -97,35 +85,16 @@ export default function App() {
                     id="tbg-radio-2" 
                     value={option}
                     className="relative flex items-center justify-center px-12 py-2 pt-2 text-xl rounded-3xl text-white">
-                    {Questions[currentQuestion].optionA}
+                    {Questions2[currentQuestion].optionA}
                 </button>
                 <button 
                     id="tbg-radio-2" 
                     value={option}
                     className="relative flex items-center justify-center px-12 py-2 pt-2 text-xl rounded-3xl text-white">
-                    {Questions[currentQuestion].optionB}
-                </button>
-                <button
-                    id="tbg-radio-3" 
-                    value={option}
-                    className="relative flex items-center justify-center px-12 py-2 pt-2 text-xl rounded-3xl text-white">
-                    {Questions[currentQuestion].optionC}
-                </button>
-                <button
-                    id="tbg-radio-4" 
-                    value={option}
-                    className="relative flex items-center justify-center px-12 py-2 pt-2 text-xl rounded-3xl text-white">
-                    {Questions[currentQuestion].optionD}
-                    
-                </button>
-                <button 
-                    id="tbg-radio-5" 
-                    value={option}
-                    className="relative flex items-center justify-center px-12 py-2 pt-2 text-xl rounded-3xl text-white">
-                    {Questions[currentQuestion].optionE}
+                    {Questions2[currentQuestion].optionB}
                 </button>
               <div className="flex justify-between">
-                  {currentQuestion == Questions.length + 1 ? (
+                  {currentQuestion == Questions2.length + 1 ? (
                       <button   
                       className="relative text-white h-16 px-7 text-2xl rounded-full"
                       onClick={restartQuiz}
@@ -143,7 +112,7 @@ export default function App() {
                     <img alt="description of image" src="./back-icon.svg" className="w-6"></img>
                     </button>
             )}
-                    {currentQuestion == Questions.length - 1 ? (
+                    {currentQuestion == Questions2.length - 1 ? (
                       <button   
                       className="relative text-white h-16 px-7 text-2xl rounded-full"
                       onClick={finishQuiz}
