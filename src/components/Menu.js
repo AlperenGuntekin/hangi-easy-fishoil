@@ -54,7 +54,7 @@ export default function App() {
               }}
               >
               <span className="relative leading-relaxed">
-              BAŞLA
+              ANFANG
               </span>
               </button>
           </div>

@@ -149,7 +149,8 @@ video {
 }
 .relative {
   position: relative;
-  background-color: rgb(30 67 90);
+  --tw-bg-opacity: 1;
+  background-color: rgb(30 67 90/var(--tw-bg-opacity));
 }
 .inset-0 {
   bottom: 0;
@@ -533,11 +534,15 @@ video {
     width: 50%;
   }
 
-.relative:focus{
-    background:#9ca3af;
-
+.relative:active{
+  background-color: grey;
 }
 
+.relative:focus{
+  background-color: grey;
+}
 
-
+.relative text-xl:focus {
+  color: black;
+}
 }

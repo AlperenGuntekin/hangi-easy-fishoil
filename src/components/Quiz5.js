@@ -1,14 +1,11 @@
 import axios from "axios";
 import React from "react";
 import "../App.css";
-import { Questions } from "../helpers/Questions";
-import { useEffect, useState } from "react";
+import { Questions5 } from "../helpers/Questions5";
+import { useState } from "react";
 import { useContext } from "react";
 import { GameStateContext } from "../helpers/Contexts";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Button from 'react-bootstrap/Button';
-
-
 
 const baseURL = "https://api.beeshopify.com/easyfishoil-quizs/add";
 
@@ -17,7 +14,7 @@ export default function App() {
   const [post, setPost] = React.useState(null);
   const [error, setError] = React.useState(null);
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [optionChosen, setOptionChosen, option, optionA, optionB, optionC, optionD, optionE] = useState("");
+  const [optionChosen, setOptionChosen, optionA, optionB, optionC, optionD] = useState("");
 
   const { score, setScore, setGameState } =
   useContext(GameStateContext);
@@ -27,9 +24,9 @@ export default function App() {
     setOptionChosen(option);
   };
 
-  
+
   const backQuestion = () => {
-    if (Questions[currentQuestion].answer == optionChosen) {
+    if (Questions5[currentQuestion].answerA == optionChosen) {
       setScore(score + 1);
     }
     setCurrentQuestion(currentQuestion - 1);
@@ -37,24 +34,33 @@ export default function App() {
   
   const restartQuiz = () => {
     setScore(0);
-    setGameState("menu");
+    setGameState("playing4");
   };
 
   const nextQuestion = () => {
-    if (Questions[currentQuestion].answer == optionChosen) {
+    if (Questions5[currentQuestion].answerA == optionChosen) {
       setScore(score + 1);
     }
     setCurrentQuestion(currentQuestion + 1);
   };
 
-
   const finishQuiz = () => {
-    if (Questions[currentQuestion].answer == optionChosen) {
-      setScore(score + 1);
+    if (Questions5[currentQuestion].answerA == optionChosen) {
+      setGameState("finished");
     }
-    setGameState("playing2");
-  };  
+    if (Questions5[currentQuestion].answerB == optionChosen) {
+      setGameState("finished2");
+    }
+    if (Questions5[currentQuestion].answerC == optionChosen) {
+      setGameState("finished3");
+    }
+    if (Questions5[currentQuestion].answerD == optionChosen) {
+      setGameState("finished4");
+    }
+  };
 
+  
+  
   React.useEffect(() => {
     // invalid url will trigger an 404 error
     axios.post(`${baseURL}`).then((response) => {
@@ -75,78 +81,69 @@ export default function App() {
             <img
               alt="description of image"
               className="rounded-3xl"
-              src={Questions[currentQuestion].images}
+              src={Questions5[currentQuestion].images}
             />
             <h1 className="bg-white p-8 rounded-3xl text-gray-700 text-xl text-left">
-            {Questions[currentQuestion].prompt}
+            {Questions5[currentQuestion].prompt}
             </h1>
             <div 
-            className="flex flex-col justify-center gap-2">
+            className="flex flex-col justify-center gap-2" 
+            type="radio">
                 <button
                     id="optionA" 
                     value={optionA}
                     onClick={() => {
-                    chooseOption("optionA");
-                    }}               
-                    className="relative flex items-center justify-center h-14 px-5 pt-1 text-xl cursor-pointer rounded-full text-white">
-                    {Questions[currentQuestion].optionA}
+                        chooseOption("optionA");
+                      }}
+                    className="relative flex items-center justify-center px-12 py-2 pt-2 text-xl rounded-3xl text-white">
+                    {Questions5[currentQuestion].optionA}
                 </button>
-                <button                    
+                <button 
                     id="optionB" 
                     value={optionB}
                     onClick={() => {
-                    chooseOption("optionB");
-                    }} 
-                    className="relative flex items-center justify-center h-14 px-5 pt-1 text-xl cursor-pointer rounded-full text-white">
-                    {Questions[currentQuestion].optionB}
+                        chooseOption("optionB");
+                      }}
+                    className="relative flex items-center justify-center px-12 py-2 pt-2 text-xl rounded-3xl text-white">
+                    {Questions5[currentQuestion].optionB}
                 </button>
                 <button 
                     id="optionC" 
                     value={optionC}
                     onClick={() => {
-                    chooseOption("optionC");
-                    }}
-                    className="relative flex items-center justify-center h-14 px-5 pt-1 text-xl cursor-pointer rounded-full text-white">
-                    {Questions[currentQuestion].optionC}
+                        chooseOption("optionC");
+                      }}
+                    className="relative flex items-center justify-center px-12 py-2 pt-2 text-xl rounded-3xl text-white">
+                    {Questions5[currentQuestion].optionC}
                 </button>
                 <button 
                     id="optionD" 
                     value={optionD}
                     onClick={() => {
-                    chooseOption("optionD");
-                    }}
-                    className="relative flex items-center justify-center h-14 px-5 pt-1 text-xl cursor-pointer rounded-full text-white">
-                    {Questions[currentQuestion].optionD}
-                </button>
-                <button 
-                    id="optionE" 
-                    value={optionE}
-                    onClick={() => {
-                    chooseOption("optionE");
-                    }}
-                    className="relative flex items-center justify-center h-14 px-5 pt-1 text-xl cursor-pointer rounded-full text-white">
-                    {Questions[currentQuestion].optionE}
+                        chooseOption("optionD");
+                      }}
+                    className="relative flex items-center justify-center px-12 py-2 pt-2 text-xl rounded-3xl text-white">
+                    {Questions5[currentQuestion].optionD}
                 </button>
               <div className="flex justify-between">
-                  {currentQuestion == Questions.length + 1 ? (
-(
-  <button
-    className="relative text-white h-16 px-7 text-2xl rounded-full"
-    onClick={backQuestion}
-    id="backQuestion"
-  >
-  <img alt="description of image" src="./back-icon.svg" className="w-6"></img>
-  </button>
-)
-                  
-                  ) :                       <button   
-                  className="relative text-white h-16 px-7 text-2xl rounded-full"
-                  onClick={restartQuiz}
-                  id="backQuestion"
-                >
-                <img alt="description of image" src="./back-icon.svg" className="w-6"></img>
-                </button>}
-                    {currentQuestion == Questions.length - 1 ? (
+                    {currentQuestion == Questions5.length + 1 ? (
+                      (
+                      <button
+                      className="relative text-white h-16 px-7 text-2xl rounded-full"
+                      onClick={backQuestion}
+                      id="backQuestion"
+                      >
+                      <img alt="description of image" src="./back-icon.svg" className="w-6"></img>
+                      </button>
+                      )
+                      ):<button   
+                      className="relative text-white h-16 px-7 text-2xl rounded-full"
+                      onClick={restartQuiz}
+                      id="backQuestion"
+                      >
+                      <img alt="description of image" src="./back-icon.svg" className="w-6"></img>
+                      </button>}
+                    {currentQuestion == Questions5.length - 1 ? (
                       <button   
                       className="relative text-white h-16 px-7 text-2xl rounded-full"
                       onClick={finishQuiz}
@@ -164,8 +161,9 @@ export default function App() {
                     <img alt="description of image" src="./next-icon.svg" className="w-6"></img>
                     </button>
             )}
+
             </div>  
-            </div>   
+            </div>    
           </div>
         </div>
       </div>

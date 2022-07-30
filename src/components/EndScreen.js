@@ -48,7 +48,7 @@ const EndScreen = () => {
                         </div>
                         <div className="space-y-4">
                           <a href="https://easyfishoil.com/urunler/easyfishoil-q/" target="_blank">
-                            <button className="relative w-full text-white h-16 pt-1 px-5 text-xl rounded-full">DAHA FAZLA BİLGİ ALIN</button>
+                            <button className="relative w-full text-white h-16 pt-1 px-5 text-xl rounded-full">Der Teil, wo Sie detaillierte Informationen erhalten.</button>
                           </a>
                           <div className="text-xs text-gray-400 text-center">
                           Es ist kein Arzneimittel. Es ist ein Nahrungsergänzungsmittel. Eine ausgewogene und vielfältige Ernährung ist für ein gesundes Leben sehr wichtig. Eine Überdosierung kann abführende Wirkungen haben. Um die aufgeführten Wirkungen zu erzielen, muss ein Kind zwischen 3 und 10 Jahren täglich 1 kaubare Gelkapsel konsumieren.

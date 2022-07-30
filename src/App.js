@@ -4,6 +4,7 @@ import Quiz from "./components/Quiz";
 import Quiz2 from "./components/Quiz2";
 import Quiz3 from "./components/Quiz3";
 import Quiz4 from "./components/Quiz4";
+import Quiz5 from "./components/Quiz5";
 import EndScreen from "./components/EndScreen";
 import EndScreen2 from "./components/EndScreen2";
 import EndScreen3 from "./components/EndScreen3";
@@ -46,6 +47,7 @@ function App() {
         {gameState === "playing2" && <Quiz2 />}
         {gameState === "playing3" && <Quiz3 />}
         {gameState === "playing4" && <Quiz4 />}
+        {gameState === "playing5" && <Quiz5 />}
         {gameState === "finished" && <EndScreen />}
         {gameState === "finished2" && <EndScreen2 />}
         {gameState === "finished3" && <EndScreen3 />}

@@ -7,6 +7,6 @@ export const Questions = [
     optionC: "Sommer",
     optionD: "Herbst",
     optionE: "Alle Jahreszeiten",
-    asnwer: "optionD",
+    answer: "optionD",
   },
 ];

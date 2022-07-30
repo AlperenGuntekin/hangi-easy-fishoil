@@ -15,7 +15,7 @@ export default function App() {
   const [post, setPost] = React.useState(null);
   const [error, setError] = React.useState(null);
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [optionChosen, setOptionChosen, option] = useState("");
+  const [optionChosen, setOptionChosen, option, optionA, optionB] = useState("");
 
   const { score, setScore, setGameState } =
   useContext(GameStateContext);
@@ -25,31 +25,33 @@ export default function App() {
     setOptionChosen(option);
   };
 
-
   const backQuestion = () => {
-    if (Questions3[currentQuestion].asnwer == optionChosen) {
+    if (Questions3[currentQuestion].answer == optionChosen) {
       setScore(score + 1);
     }
     setCurrentQuestion(currentQuestion - 1);
   };
   
-  const restartQuiz = () => {
-    setScore(0);
-    setGameState("menu");
-  };
-
   const nextQuestion = () => {
-    if (Questions3[currentQuestion].asnwer == optionChosen) {
+    if (Questions3[currentQuestion].answer == optionChosen) {
       setScore(score + 1);
     }
     setCurrentQuestion(currentQuestion + 1);
   };
 
+  const restartQuiz = () => {
+    setScore(0);
+    setGameState("playing2");
+  };
+
+
   const finishQuiz = () => {
-    if (Questions3[currentQuestion].asnwer == optionChosen) {
-      setScore(score + 1);
+    if (Questions3[currentQuestion].answerA == optionChosen) {
+      setGameState("playing4");
     }
-    setGameState("playing4");
+    if (Questions3[currentQuestion].answerB == optionChosen) {
+      setGameState("playing4");
+    }
   };
   
 
@@ -83,55 +85,43 @@ export default function App() {
             className="flex flex-col justify-center gap-2" 
             type="radio">
                 <button
-                    id="tbg-radio-2" 
-                    value={option}
+                    id="optionA" 
+                    value={optionA}
+                    onClick={() => {
+                    chooseOption("optionA");
+                    }}
                     className="relative flex items-center justify-center px-12 py-2 pt-2 text-xl rounded-3xl text-white">
                     {Questions3[currentQuestion].optionA}
+
                 </button>
                 <button 
-                    id="tbg-radio-2" 
-                    value={option}
+                    id="optionB" 
+                    value={optionB}
+                    onClick={() => {
+                    chooseOption("optionB");
+                    }}
                     className="relative flex items-center justify-center px-12 py-2 pt-2 text-xl rounded-3xl text-white">
                     {Questions3[currentQuestion].optionB}
                 </button>
-                <button 
-                    id="tbg-radio-2" 
-                    value={option}
-                    className="relative flex items-center justify-center px-12 py-2 pt-2 text-xl rounded-3xl text-white">
-                    {Questions3[currentQuestion].optionC}
-                </button>
-                <button 
-                    id="tbg-radio-2" 
-                    value={option}
-                    className="relative flex items-center justify-center px-12 py-2 pt-2 text-xl rounded-3xl text-white">
-                    {Questions3[currentQuestion].optionD}
-                </button>
-                <button 
-                    id="tbg-radio-2" 
-                    value={option}
-                    className="relative flex items-center justify-center px-12 py-2 pt-2 text-xl rounded-3xl text-white">
-                    {Questions3[currentQuestion].optionE}
-                </button>
               <div className="flex justify-between">
-                  {currentQuestion == Questions3.length + 1 ? (
-                      <button   
-                      className="relative text-white h-16 px-7 text-2xl rounded-full"
-                      onClick={restartQuiz}
-                      id="backQuestion"
-                    >
-                    <img alt="description of image" src="./back-icon.svg" className="w-6"></img>
-                    </button>
-                  
-                  ) : (
-                    <button
-                      className="relative text-white h-16 px-7 text-2xl rounded-full"
-                      onClick={backQuestion}
-                      id="backQuestion"
-                    >
-                    <img alt="description of image" src="./back-icon.svg" className="w-6"></img>
-                    </button>
-            )}
-                    {currentQuestion == Questions3.length - 1 ? (
+              {currentQuestion == Questions3.length + 1 ? (
+                  (
+                  <button
+                  className="relative text-white h-16 px-7 text-2xl rounded-full"
+                  onClick={backQuestion}
+                  id="backQuestion"
+                  >
+                  <img alt="description of image" src="./back-icon.svg" className="w-6"></img>
+                  </button>
+                  )
+                  ):<button   
+                  className="relative text-white h-16 px-7 text-2xl rounded-full"
+                  onClick={restartQuiz}
+                  id="backQuestion"
+                >
+                <img alt="description of image" src="./back-icon.svg" className="w-6"></img>
+                </button>}
+                                {currentQuestion == Questions3.length - 1 ? (
                       <button   
                       className="relative text-white h-16 px-7 text-2xl rounded-full"
                       onClick={finishQuiz}
