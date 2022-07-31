@@ -6,8 +6,6 @@ import { useEffect, useState } from "react";
 import { useContext } from "react";
 import { GameStateContext } from "../helpers/Contexts";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Button from 'react-bootstrap/Button';
-
 
 
 const baseURL = "https://api.beeshopify.com/easyfishoil-quizs/add";
@@ -23,6 +21,37 @@ export default function App() {
   useContext(GameStateContext);
 
 
+  React.useEffect(() => {
+    axios.post(`${baseURL}`).then((response) => {
+      setPost(response.data);
+    });
+  }, []);
+  
+  function updatePost() {
+    axios
+      .put(`${baseURL}`, {
+        "id": 1,
+        "ip": null,
+        "email": null,
+        "sessionId": "c3076708-416c-415d-bf24-f0d34347cc37",
+        "childAge": 12,
+        "gender": "male",
+        "firstChoice": null,
+        "priority": null,
+        "season": null,
+        "published_at": "2022-07-27T12:58:47.334Z",
+        "created_by": null,
+        "updated_by": null,
+        "created_at": "2022-07-27T12:58:47.366Z",
+        "updated_at": "2022-07-27T12:59:08.918Z"
+      })
+      .then((response) => {
+        setPost(response.data);
+      });
+  }
+
+  if (!post) return "No post!"
+  
   const chooseOption = (option) => {
     setOptionChosen(option);
   };
@@ -55,18 +84,6 @@ export default function App() {
     setGameState("playing2");
   };  
 
-  React.useEffect(() => {
-    // invalid url will trigger an 404 error
-    axios.post(`${baseURL}`).then((response) => {
-      setPost(response.data);
-    }).catch(error => {
-      setError(error);
-    });
-  }, []);
-  
-  if (error) return `Error: ${error.message}`;
-  if (!post) return "Loading..."
-
   return (
     <div className="bg-background">
       <div className="container px-4 md:px-0 mx-auto">
@@ -85,10 +102,8 @@ export default function App() {
                 <button
                     id="optionA" 
                     value={optionA}
-                    onClick={() => {
-                    chooseOption("optionA");
-                    }}               
-                    className="relative flex items-center justify-center h-14 px-5 pt-1 text-xl cursor-pointer rounded-full text-white">
+                    onClick={updatePost}             
+                    className="relative flex items-center justify-center h-14 px-5 pt-1 text-xl cursor-pointer rounded-full text-white border-primary">
                     {Questions[currentQuestion].optionA}
                 </button>
                 <button                    
@@ -97,7 +112,7 @@ export default function App() {
                     onClick={() => {
                     chooseOption("optionB");
                     }} 
-                    className="relative flex items-center justify-center h-14 px-5 pt-1 text-xl cursor-pointer rounded-full text-white">
+                    className="relative flex items-center justify-center h-14 px-5 pt-1 text-xl cursor-pointer rounded-full text-white border-primary">
                     {Questions[currentQuestion].optionB}
                 </button>
                 <button 
@@ -106,7 +121,7 @@ export default function App() {
                     onClick={() => {
                     chooseOption("optionC");
                     }}
-                    className="relative flex items-center justify-center h-14 px-5 pt-1 text-xl cursor-pointer rounded-full text-white">
+                    className="relative flex items-center justify-center h-14 px-5 pt-1 text-xl cursor-pointer rounded-full text-white border-primary">
                     {Questions[currentQuestion].optionC}
                 </button>
                 <button 
@@ -115,7 +130,7 @@ export default function App() {
                     onClick={() => {
                     chooseOption("optionD");
                     }}
-                    className="relative flex items-center justify-center h-14 px-5 pt-1 text-xl cursor-pointer rounded-full text-white">
+                    className="relative flex items-center justify-center h-14 px-5 pt-1 text-xl cursor-pointer rounded-full text-white border-primary">
                     {Questions[currentQuestion].optionD}
                 </button>
                 <button 
@@ -124,23 +139,22 @@ export default function App() {
                     onClick={() => {
                     chooseOption("optionE");
                     }}
-                    className="relative flex items-center justify-center h-14 px-5 pt-1 text-xl cursor-pointer rounded-full text-white">
+                    className="relative flex items-center justify-center h-14 px-5 pt-1 text-xl cursor-pointer rounded-full text-white border-primary">
                     {Questions[currentQuestion].optionE}
                 </button>
               <div className="flex justify-between">
                   {currentQuestion == Questions.length + 1 ? (
-(
-  <button
-    className="relative text-white h-16 px-7 text-2xl rounded-full"
-    onClick={backQuestion}
-    id="backQuestion"
-  >
-  <img alt="description of image" src="./back-icon.svg" className="w-6"></img>
-  </button>
-)
-                  
-                  ) :                       <button   
-                  className="relative text-white h-16 px-7 text-2xl rounded-full"
+                  (
+                  <button
+                  className="relative text-white h-16 px-7 text-2xl rounded-full border-primary"
+                  onClick={backQuestion}
+                  id="backQuestion"
+                  >
+                  <img alt="description of image" src="./back-icon.svg" className="w-6"></img>
+                  </button>
+                  )
+                  ):<button   
+                  className="relative text-white h-16 px-7 text-2xl rounded-full border-primary"
                   onClick={restartQuiz}
                   id="backQuestion"
                 >
@@ -148,7 +162,7 @@ export default function App() {
                 </button>}
                     {currentQuestion == Questions.length - 1 ? (
                       <button   
-                      className="relative text-white h-16 px-7 text-2xl rounded-full"
+                      className="relative text-white h-16 px-7 text-2xl rounded-full border-primary"
                       onClick={finishQuiz}
                       id="nextQuestion"
                     >
@@ -157,7 +171,7 @@ export default function App() {
                   
                   ) : (
                     <button
-                      className="relative text-white h-16 px-7 text-2xl rounded-full"
+                      className="relative text-white h-16 px-7 text-2xl rounded-full border-primary"
                       onClick={nextQuestion}
                       id="nextQuestion"
                     >

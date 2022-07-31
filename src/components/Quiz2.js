@@ -55,18 +55,22 @@ export default function App() {
   };
   
 
-
   React.useEffect(() => {
-    // invalid url will trigger an 404 error
     axios.post(`${baseURL}`).then((response) => {
       setPost(response.data);
-    }).catch(error => {
-      setError(error);
     });
   }, []);
   
-  if (error) return `Error: ${error.message}`;
-  if (!post) return "Loading..."
+  function updatePost() {
+    axios
+      .put(`${baseURL}`, {
+        title: "Hello World!",
+        body: "This is an updated post."
+      })
+      .then((response) => {
+        setPost(response.data);
+      });
+  }
 
   return (
     <div className="bg-background">
@@ -83,7 +87,13 @@ export default function App() {
             </h1>
             <div className="flex justify-between gap-4">
               <div className="w-2/4">
-              <select className="relative w-full flex items-center justify-center apperance-none h-14 pt-1 px-5 text-center rounded-full text-white text-lg">
+              <select 
+                id="optionB" 
+                value={optionA}
+                onClick={() => {
+                chooseOption("optionA");
+                }}                  
+              className="relative w-full h-14 pt-1 text-l rounded-full text-white text-center border-primary">
                 <option value>Wählen</option>             
                 <option value="3">3</option>
                 <option value="4">4</option>
@@ -103,7 +113,7 @@ export default function App() {
                 onClick={() => {
                 chooseOption("optionB");
                 }}              
-                className="relative w-full h-14 pt-1 text-l rounded-full text-white">
+                className="relative w-full h-14 pt-1 text-l rounded-full text-white border-primary">
                 {Questions2[currentQuestion].optionB}
                 </button>
               </div>
@@ -120,7 +130,7 @@ export default function App() {
                   </button>
                   )
                   ):<button   
-                  className="relative text-white h-16 px-7 text-2xl rounded-full"
+                  className="relative text-white h-16 px-7 text-2xl rounded-full border-primary"
                   onClick={restartQuiz}
                   id="backQuestion"
                 >
@@ -128,7 +138,7 @@ export default function App() {
                 </button>}
                                 {currentQuestion == Questions2.length - 1 ? (
                       <button   
-                      className="relative text-white h-16 px-7 text-2xl rounded-full"
+                      className="relative text-white h-16 px-7 text-2xl rounded-full border-primary"
                       onClick={finishQuiz}
                       id="nextQuestion"
                     >

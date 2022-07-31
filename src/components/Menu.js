@@ -12,24 +12,27 @@ export default function App() {
   const { gameState, setGameState} = useContext(
     GameStateContext);
 
-  React.useEffect(() => {
-    axios.post(`${baseURL}`).then((response) => {
-      setPost(response.data);
-    });
-  }, []);
-
-  function createPost() {
-    axios
-      .post(baseURL, {
-        title: "Hello World!",
-        body: "This is a new post."
-      })
-      .then((response) => {
+    React.useEffect(() => {
+      axios.post(`${baseURL}`).then((response) => {
         setPost(response.data);
       });
-  }
-
-  if (!post) return "No post!"
+    }, []);
+    
+    function createPost() {
+      axios.post(baseURL, {
+          sessionId: "c3076708-416c-415d-bf24-f0d34347cc37",
+          childAge: 12,
+          gender: "male",
+          firstChoice: "test",
+          priority: "test 2",
+          season: "sonbahar"
+        })
+        .then((response) => {
+          console.log(response.data);
+        });
+    }
+  
+    if (!post) return "No post!"
 
   return (
     <div className="bg-background">
@@ -48,7 +51,8 @@ export default function App() {
             </div>
           </div>
           <div className="flex justify-center">
-              <button className="relative flex items-center justify-center h-14 px-5 pt-1 text-xl cursor-pointer rounded-full text-white"
+              <button 
+              className="relative flex items-center justify-center h-14 px-5 pt-1 text-xl cursor-pointer rounded-full text-white border-primary"
               onClick={() => {
               setGameState("playing");
               }}

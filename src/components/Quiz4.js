@@ -74,7 +74,7 @@ export default function App() {
   }, []);
   
   if (error) return `Error: ${error.message}`;
-  if (!post) return "Loading..."
+  if (!post) return "Wird geladen..." 
 
   return (
     <div className="bg-background">
@@ -98,7 +98,7 @@ export default function App() {
                     onClick={() => {
                     chooseOption("optionA");
                     }}
-                    className="relative flex items-center justify-center px-12 py-2 pt-2 text-xl rounded-3xl text-white">
+                    className="relative flex items-center justify-center px-12 py-2 pt-2 text-xl rounded-3xl text-white border-primary">
                     {Questions4[currentQuestion].optionA}
                 </button>
                 <button 
@@ -107,7 +107,7 @@ export default function App() {
                     onClick={() => {
                     chooseOption("optionB");
                     }}
-                    className="relative flex items-center justify-center px-12 py-2 pt-2 text-xl rounded-3xl text-white">
+                    className="relative flex items-center justify-center px-12 py-2 pt-2 text-xl rounded-3xl text-white border-primary">
                     {Questions4[currentQuestion].optionB}
                 </button>
                 <button 
@@ -116,7 +116,7 @@ export default function App() {
                     onClick={() => {
                     chooseOption("optionC");
                     }}
-                    className="relative flex items-center justify-center px-12 py-2 pt-2 text-xl rounded-3xl text-white">
+                    className="relative flex items-center justify-center px-12 py-2 pt-2 text-xl rounded-3xl text-white border-primary">
                     {Questions4[currentQuestion].optionC}
                 </button>
                 <button 
@@ -125,7 +125,7 @@ export default function App() {
                     onClick={() => {
                     chooseOption("optionD");
                     }}
-                    className="relative flex items-center justify-center px-12 py-2 pt-2 text-xl rounded-3xl text-white">
+                    className="relative flex items-center justify-center px-12 py-2 pt-2 text-xl rounded-3xl text-white border-primary">
                     {Questions4[currentQuestion].optionD}
                 </button>
                 <button 
@@ -134,14 +134,14 @@ export default function App() {
                     onClick={() => {
                     chooseOption("optionE");
                     }}
-                    className="relative flex items-center justify-center px-12 py-2 pt-2 text-xl rounded-3xl text-white">
+                    className="relative flex items-center justify-center px-12 py-2 pt-2 text-xl rounded-3xl text-white border-primary">
                     {Questions4[currentQuestion].optionE}
                 </button>
               <div className="flex justify-between">
                       {currentQuestion == Questions4.length + 1 ? (
                       (
                       <button
-                      className="relative text-white h-16 px-7 text-2xl rounded-full"
+                      className="relative text-white h-16 px-7 text-2xl rounded-full border-primary"
                       onClick={backQuestion}
                       id="backQuestion"
                       >
@@ -149,7 +149,7 @@ export default function App() {
                       </button>
                       )
                       ):<button   
-                      className="relative text-white h-16 px-7 text-2xl rounded-full"
+                      className="relative text-white h-16 px-7 text-2xl rounded-full border-primary"
                       onClick={restartQuiz}
                       id="backQuestion"
                       >
@@ -157,7 +157,7 @@ export default function App() {
                       </button>}
                       {currentQuestion == Questions4.length - 1 ? (
                       <button   
-                      className="relative text-white h-16 px-7 text-2xl rounded-full"
+                      className="relative text-white h-16 px-7 text-2xl rounded-full border-primary"
                       onClick={finishQuiz}
                       id="nextQuestion"
                     >
@@ -166,7 +166,7 @@ export default function App() {
                   
                   ) : (
                     <button
-                      className="relative text-white h-16 px-7 text-2xl rounded-full"
+                      className="relative text-white h-16 px-7 text-2xl rounded-full border-primary"
                       onClick={nextQuestion}
                       id="nextQuestion"
                     >
