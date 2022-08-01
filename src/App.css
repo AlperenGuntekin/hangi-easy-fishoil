@@ -534,7 +534,7 @@ video {
     width: 50%;
   }
 
-.relative:active{
+.relative::-moz-selection{
   background-color: grey;
 }
 
@@ -544,6 +544,14 @@ video {
 
 .relative text-xl:focus {
   color: black;
+}
+
+.relative::selection{
+  background-color: grey;
+}
+
+.togglebuttoon{
+  background-color: brown;
 }
 
 }

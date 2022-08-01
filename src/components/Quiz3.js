@@ -54,19 +54,23 @@ export default function App() {
     }
   };
   
-
-
   React.useEffect(() => {
-    // invalid url will trigger an 404 error
-    axios.post(`${baseURL}`).then((response) => {
+    axios.post(`${baseURL}/add`).then((response) => {
       setPost(response.data);
-    }).catch(error => {
-      setError(error);
     });
   }, []);
-  
-  if (error) return `Error: ${error.message}`;
-  if (!post) return "Wird geladen..." 
+
+  function updatePost() {
+    axios
+      .post(baseURL, {
+        childAge: 12,
+      })
+      .then((response) => {
+        setPost(response.data);
+      });
+  }
+
+  if (!post) return "No post!" 
 
   return (
     <div className="bg-background">

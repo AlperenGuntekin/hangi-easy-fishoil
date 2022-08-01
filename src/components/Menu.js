@@ -5,21 +5,24 @@ import { useContext } from "react";
 import { GameStateContext } from "../helpers/Contexts";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-const baseURL = "https://api.beeshopify.com/easyfishoil-quizs/start";
+const baseURL = "https://api.beeshopify.com/easyfishoil-quizs";
 
 export default function App() {
   const [post, setPost] = React.useState(null);
-  const { gameState, setGameState} = useContext(
+
+  const {setGameState} = useContext(
     GameStateContext);
 
+    
     React.useEffect(() => {
-      axios.post(`${baseURL}`).then((response) => {
+      axios.post(`${baseURL}/start`).then((response) => {
         setPost(response.data);
       });
     }, []);
-    
+  
     function createPost() {
-      axios.post(baseURL, {
+      axios
+        .post(baseURL, {
           sessionId: "c3076708-416c-415d-bf24-f0d34347cc37",
           childAge: 12,
           gender: "male",
@@ -28,7 +31,7 @@ export default function App() {
           season: "sonbahar"
         })
         .then((response) => {
-          console.log(response.data);
+          setPost(response.data);
         });
     }
   
@@ -54,9 +57,9 @@ export default function App() {
               <button 
               className="relative flex items-center justify-center h-14 px-5 pt-1 text-xl cursor-pointer rounded-full text-white border-primary"
               onClick={() => {
-              setGameState("playing");
-              }}
-              >
+                setGameState("playing");
+                }}
+                >
               <span className="relative leading-relaxed">
               ANFANG
               </span>

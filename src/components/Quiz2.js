@@ -21,6 +21,7 @@ export default function App() {
   useContext(GameStateContext);
 
 
+
   const chooseOption = (option) => {
     setOptionChosen(option);
   };
@@ -56,21 +57,22 @@ export default function App() {
   
 
   React.useEffect(() => {
-    axios.post(`${baseURL}`).then((response) => {
+    axios.post(`${baseURL}/add`).then((response) => {
       setPost(response.data);
     });
   }, []);
-  
+
   function updatePost() {
     axios
-      .put(`${baseURL}`, {
-        title: "Hello World!",
-        body: "This is an updated post."
+      .post(baseURL, {
+        childAge: 12,
       })
       .then((response) => {
         setPost(response.data);
       });
   }
+
+  if (!post) return "No post!"
 
   return (
     <div className="bg-background">
