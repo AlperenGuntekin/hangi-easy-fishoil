@@ -30,7 +30,7 @@ export default function App() {
         });
     }
   
-    if (!post) return "No post!" 
+    if (!post) return "Loading..." 
 
   return (
     <div className="bg-background">
@@ -48,7 +48,9 @@ export default function App() {
               <p>Los fangen wir an!</p>
             </div>
           </div>
-          <div className="flex justify-center">
+          <div 
+          onClick={createPost}
+          className="flex justify-center">
               <button 
               className="relative flex items-center justify-center h-14 px-5 pt-1 text-xl cursor-pointer rounded-full text-white border-primary"
               onClick={() => {

@@ -20,6 +20,25 @@ export default function App() {
   const { score, setScore, setGameState } =
   useContext(GameStateContext);
 
+  React.useEffect(() => {
+    axios.post(`${baseURL}`).then((response) => {
+      setPost(response.data);
+    });
+  }, []);
+
+  function createPost() {
+    axios
+      .post(baseURL, {
+        "sessionId" : "c3076708-416c-415d-bf24-f0d34347cc37",
+        "gender": "male",
+      })
+      .then((response) => {
+        setPost(response.data);
+      });
+  }
+
+  if (!post) return "Loading..."
+
 
   const chooseOption = (option) => {
     setOptionChosen(option);
@@ -49,7 +68,7 @@ export default function App() {
     if (Questions3[currentQuestion].answerA == optionChosen) {
       setGameState("playing4");
     }
-    if (Questions3[currentQuestion].answerB == optionChosen) {
+    else {
       setGameState("playing4");
     }
   };
@@ -85,25 +104,26 @@ export default function App() {
             <h1 className="bg-white p-8 rounded-3xl text-gray-700 text-xl text-left">
             {Questions3[currentQuestion].prompt}
             </h1>
-            <div 
+            <div
+            onClick={createPost} 
             className="flex flex-col justify-center gap-2" 
             type="radio">
                 <button
                     id="optionA" 
-                    value={optionA}
+                    value={post.gender}
                     onClick={() => {
-                    chooseOption("optionA");
-                    }}
+                      chooseOption("optionA");
+                    }}     
                     className="relative flex items-center justify-center px-12 py-2 pt-2 text-xl rounded-3xl text-white border-primary">
                     {Questions3[currentQuestion].optionA}
 
                 </button>
                 <button 
                     id="optionB" 
-                    value={optionB}
+                    value={post.gender}
                     onClick={() => {
-                    chooseOption("optionB");
-                    }}
+                      chooseOption("optionB");
+                    }}         
                     className="relative flex items-center justify-center px-12 py-2 pt-2 text-xl rounded-3xl text-white border-primary">
                     {Questions3[currentQuestion].optionB}
                 </button>

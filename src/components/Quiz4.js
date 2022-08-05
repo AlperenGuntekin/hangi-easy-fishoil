@@ -20,6 +20,25 @@ export default function App() {
   const { score, setScore, setGameState } =
   useContext(GameStateContext);
 
+  React.useEffect(() => {
+    axios.post(`${baseURL}`).then((response) => {
+      setPost(response.data);
+    });
+  }, []);
+
+  function createPost() {
+    axios
+      .post(baseURL, {
+        "sessionId" : "c3076708-416c-415d-bf24-f0d34347cc37",
+        "firstChoice": "test",
+      })
+      .then((response) => {
+        setPost(response.data);
+      });
+  }
+
+  if (!post) return "Loading..."
+
 
   const chooseOption = (option) => {
     setOptionChosen(option);
@@ -58,7 +77,7 @@ export default function App() {
     if (Questions4[currentQuestion].answerD == optionChosen) {
       setGameState("playing5");
     }
-    if (Questions4[currentQuestion].answerE == optionChosen) {
+    else {
       setGameState("playing5");
     }
   };
@@ -94,51 +113,52 @@ export default function App() {
             <h1 className="bg-white p-8 rounded-3xl text-gray-700 text-xl text-left">
             {Questions4[currentQuestion].prompt}
             </h1>
-            <div 
+            <div
+            onClick={createPost} 
             className="flex flex-col justify-center gap-2" 
             type="radio">
                 <button
                     id="optionA" 
-                    value={optionA}
+                    value={post.firstChoice}
                     onClick={() => {
-                    chooseOption("optionA");
-                    }}
+                      chooseOption("optionA");
+                    }}       
                     className="relative flex items-center justify-center px-12 py-2 pt-2 text-xl rounded-3xl text-white border-primary">
                     {Questions4[currentQuestion].optionA}
                 </button>
                 <button 
                     id="optionB" 
-                    value={optionB}
+                    value={post.firstChoice}
                     onClick={() => {
-                    chooseOption("optionB");
-                    }}
+                      chooseOption("optionB");
+                    }}        
                     className="relative flex items-center justify-center px-12 py-2 pt-2 text-xl rounded-3xl text-white border-primary">
                     {Questions4[currentQuestion].optionB}
                 </button>
                 <button 
                     id="optionC" 
-                    value={optionC}
+                    value={post.firstChoice}
                     onClick={() => {
-                    chooseOption("optionC");
-                    }}
+                      chooseOption("optionC");
+                    }}       
                     className="relative flex items-center justify-center px-12 py-2 pt-2 text-xl rounded-3xl text-white border-primary">
                     {Questions4[currentQuestion].optionC}
                 </button>
                 <button 
                     id="optionD" 
-                    value={optionD}
+                    value={post.firstChoice}
                     onClick={() => {
-                    chooseOption("optionD");
-                    }}
+                      chooseOption("optionD");
+                    }}        
                     className="relative flex items-center justify-center px-12 py-2 pt-2 text-xl rounded-3xl text-white border-primary">
                     {Questions4[currentQuestion].optionD}
                 </button>
                 <button 
                     id="optionE" 
-                    value={optionE}
+                    value={post.firstChoice}
                     onClick={() => {
-                    chooseOption("optionE");
-                    }}
+                      chooseOption("optionE");
+                    }}         
                     className="relative flex items-center justify-center px-12 py-2 pt-2 text-xl rounded-3xl text-white border-primary">
                     {Questions4[currentQuestion].optionE}
                 </button>

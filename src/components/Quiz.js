@@ -7,7 +7,7 @@ import { useContext } from "react";
 import { GameStateContext } from "../helpers/Contexts";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-const baseURL = "https://api.beeshopify.com/easyfishoil-quizs";
+const baseURL = "https://api.beeshopify.com/easyfishoil-quizs/add";
 
 export default function App() {
   const [post, setPost] = React.useState(null);
@@ -19,22 +19,23 @@ export default function App() {
   useContext(GameStateContext);
  
   React.useEffect(() => {
-    axios.post(`${baseURL}/add`).then((response) => {
+    axios.post(`${baseURL}`).then((response) => {
       setPost(response.data);
     });
   }, []);
 
-  function updatePost() {
+  function createPost() {
     axios
       .post(baseURL, {
-        sessionId: "c3076708-416c-415d-bf24-f0d34347cc37",
+        sessionId : "c3076708-416c-415d-bf24-f0d34347cc37",
+        season: chooseOption
       })
       .then((response) => {
         setPost(response.data);
       });
   }
 
-  if (!post) return "No post!"
+  if (!post) return "Loading..."
 
 
   const chooseOption = (option) => {
@@ -121,38 +122,49 @@ export default function App() {
               </ToggleButton>
             </ToggleButtonGroup>  */}
             </div>
-            <div type="checkbox" value={value} onChange={handleChange} className="flex flex-col justify-center gap-2">
+            <div type="checkbox" value={value} onClick={createPost} className="flex flex-col justify-center gap-2">
                 <button
-                    id="optionA" 
-                    value={1}
-                    onClick={updatePost}          
+                    id="Winter" 
+                    value={post.season}
+                    onClick={() => {
+                      chooseOption("optionA");
+                    }}        
                     className="relative flex items-center justify-center h-14 px-5 pt-1 text-xl cursor-pointer rounded-full text-white border-primary">
                     {Questions[currentQuestion].optionA}
                 </button>
                 <button                
                     id="optionB" 
-                    value={2}
-                    onClick={updatePost}   
+                    value={post.season}
+                    onClick={() => {
+                      chooseOption("optionB");
+                    }}   
                     className="relative flex items-center justify-center h-14 px-5 pt-1 text-xl cursor-pointer rounded-full text-white border-primary">
                     {Questions[currentQuestion].optionB}
                 </button>
                 <button 
                     id="optionC" 
-                    value={3}
-                    onClick={updatePost}   
+                    value={post.season}
+                    onClick={() => {
+                      chooseOption("optionC");
+                    }}  
                     className="relative flex items-center justify-center h-14 px-5 pt-1 text-xl cursor-pointer rounded-full text-white border-primary">
                     {Questions[currentQuestion].optionC}
                 </button>
                 <button
                     id="optionD"
-                    onClick={updatePost}     
+                    value={post.season}
+                    onClick={() => {
+                      chooseOption("optionD");
+                    }}     
                     className="relative flex items-center justify-center h-14 px-5 pt-1 text-xl cursor-pointer rounded-full text-white border-primary">
                     {Questions[currentQuestion].optionD}
                 </button>
                 <button 
-                    type="checkbox" 
+                    value={post.season} 
                     id="optionE"
-                    onClick={updatePost} 
+                    onClick={() => {
+                      chooseOption("optionE");
+                    }}  
                     className="relative flex items-center justify-center h-14 px-5 pt-1 text-xl cursor-pointer rounded-full text-white border-primary">
                     {Questions[currentQuestion].optionE}
                 </button>

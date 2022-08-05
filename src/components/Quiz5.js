@@ -20,6 +20,26 @@ export default function App() {
   useContext(GameStateContext);
 
 
+  React.useEffect(() => {
+    axios.post(`${baseURL}`).then((response) => {
+      setPost(response.data);
+    });
+  }, []);
+
+  function createPost() {
+    axios
+      .post(baseURL, {
+        "sessionId" : "c3076708-416c-415d-bf24-f0d34347cc37",
+        "priority": "test 2",
+      })
+      .then((response) => {
+        setPost(response.data);
+      });
+  }
+
+  if (!post) return "Loading..."
+
+  
   const chooseOption = (option) => {
     setOptionChosen(option);
   };
@@ -59,23 +79,6 @@ export default function App() {
     }
   };
 
-  /* React.useEffect(() => {
-    axios.post(`${baseURL}/add`).then((response) => {
-      setPost(response.data);
-    });
-  }, []);
-
-  function updatePost() {
-    axios
-      .post(baseURL, {
-        childAge: 12,
-      })
-      .then((response) => {
-        setPost(response.data);
-      });
-  }
-
-  if (!post) return "No post!"  */
 
   return (
     <div className="bg-background">
@@ -90,12 +93,13 @@ export default function App() {
             <h1 className="bg-white p-8 rounded-3xl text-gray-700 text-xl text-left">
             {Questions5[currentQuestion].prompt}
             </h1>
-            <div 
+            <div
+            onClick={createPost} 
             className="flex flex-col justify-center gap-2" 
             type="radio">
                 <button
                     id="optionA" 
-                    value={optionA}
+                    value={post.priority}
                     onClick={() => {
                         chooseOption("optionA");
                       }}
@@ -104,7 +108,7 @@ export default function App() {
                 </button>
                 <button 
                     id="optionB" 
-                    value={optionB}
+                    value={post.priority}
                     onClick={() => {
                         chooseOption("optionB");
                       }}
@@ -113,7 +117,7 @@ export default function App() {
                 </button>
                 <button 
                     id="optionC" 
-                    value={optionC}
+                    value={post.priority}
                     onClick={() => {
                         chooseOption("optionC");
                       }}
@@ -122,7 +126,7 @@ export default function App() {
                 </button>
                 <button 
                     id="optionD" 
-                    value={optionD}
+                    value={post.priority}
                     onClick={() => {
                         chooseOption("optionD");
                       }}

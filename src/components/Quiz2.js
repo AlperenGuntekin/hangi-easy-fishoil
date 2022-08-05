@@ -20,6 +20,24 @@ export default function App() {
   const { score, setScore, setGameState } =
   useContext(GameStateContext);
 
+  React.useEffect(() => {
+    axios.post(`${baseURL}`).then((response) => {
+      setPost(response.data);
+    });
+  }, []);
+
+  function createPost() {
+    axios
+      .post(baseURL, {
+        "sessionId" : "c3076708-416c-415d-bf24-f0d34347cc37",
+        "childAge": 12,
+      })
+      .then((response) => {
+        setPost(response.data);
+      });
+  }
+
+  if (!post) return "Loading..."
 
 
   const chooseOption = (option) => {
@@ -97,24 +115,26 @@ export default function App() {
                 }}                  
               className="relative w-full h-14 pt-1 text-l rounded-full text-white text-center border-primary">
                 <option value>Wählen</option>             
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
+                <option value={post.childAge}>3</option>
+                <option value={post.childAge}>4</option>
+                <option value={post.childAge}>5</option>
+                <option value={post.childAge}>6</option>
+                <option value={post.childAge}>7</option>
+                <option value={post.childAge}>8</option>
+                <option value={post.childAge}>9</option>
+                <option value={post.childAge}>10</option>
+                <option value={post.childAge}>11</option>
               </select>
               </div>
-              <div className="w-2/4">
+              <div 
+              onClick={createPost}
+              className="w-2/4">
                 <button 
                 id="optionB" 
-                value={optionB}
+                value={post.childAge}
                 onClick={() => {
-                chooseOption("optionB");
-                }}              
+                  chooseOption("optionB");
+                }}          
                 className="relative w-full h-14 pt-1 text-l rounded-full text-white border-primary">
                 {Questions2[currentQuestion].optionB}
                 </button>

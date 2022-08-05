@@ -17,6 +17,8 @@ const EndScreen = () => {
 
   return (
     <div className="bg-background">
+    <div>
+    </div>
       <div className="container px-4 md:px-0 mx-auto">
         <div className="space-y-0">
           <div className="flex justify-center">
