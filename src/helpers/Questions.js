@@ -8,5 +8,6 @@ export const Questions = [
     optionD: "Herbst",
     optionE: "Alle Jahreszeiten",
     answer: "optionD",
-  },
+  }
 ];
+  

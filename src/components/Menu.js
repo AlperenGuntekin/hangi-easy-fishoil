@@ -24,18 +24,13 @@ export default function App() {
       axios
         .post(baseURL, {
           sessionId: "c3076708-416c-415d-bf24-f0d34347cc37",
-          childAge: 12,
-          gender: "male",
-          firstChoice: "test",
-          priority: "test 2",
-          season: "sonbahar"
         })
         .then((response) => {
           setPost(response.data);
         });
     }
   
-    if (!post) return "No post!"
+    if (!post) return "No post!" 
 
   return (
     <div className="bg-background">

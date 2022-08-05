@@ -63,7 +63,7 @@ export default function App() {
     }
   };
 
-  React.useEffect(() => {
+  /* React.useEffect(() => {
     axios.post(`${baseURL}/add`).then((response) => {
       setPost(response.data);
     });
@@ -79,7 +79,7 @@ export default function App() {
       });
   }
 
-  if (!post) return "No post!"
+  if (!post) return "No post!" */
 
   return (
     <div className="bg-background">
