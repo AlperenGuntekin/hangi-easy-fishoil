@@ -63,17 +63,23 @@ export default function App() {
 
   const finishQuiz = () => {
     if (Question5[currentQuestion].answerA == optionChosen) {
-      setGameState("finished");
+      setScore(score + 1);
     }
+    setGameState("finished");
+
     if (Question5[currentQuestion].answerB == optionChosen) {
-      setGameState("finished2");
+      setScore(score + 2);
     }
+    setGameState("finished");
     if (Question5[currentQuestion].answerC == optionChosen) {
-      setGameState("finished3");
+      setScore(score + 3);
     }
+    setGameState("finished");
+
     if (Question5[currentQuestion].answerD == optionChosen) {
-      setGameState("finished4");
+      setScore(score + 4);
     }
+    setGameState("finished");
   };
 
 

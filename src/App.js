@@ -6,13 +6,10 @@ import Quiz3 from "./components/Quiz3";
 import Quiz4 from "./components/Quiz4";
 import Quiz5 from "./components/Quiz5";
 import EndScreen from "./components/EndScreen";
-import EndScreen2 from "./components/EndScreen2";
-import EndScreen3 from "./components/EndScreen3";
-import EndScreen4 from "./components/EndScreen4";
 import { useState } from "react";
 import { GameStateContext } from "./helpers/Contexts";
 import { Question, Question2, Question3, Question4, Question5 } from "./helpers/Question";
-import EndScreens from "./components/EndScreens";
+
 
 
 
@@ -53,9 +50,7 @@ function App() {
         {gameState === "playing4" && <Quiz4 Question={Question4}/>}
         {gameState === "playing5" && <Quiz5 Question={Question5}/>}
         {gameState === "finished" && <EndScreen />}
-        {gameState === "finished2" && <EndScreen2 />}
-        {gameState === "finished3" && <EndScreen3 />}
-        {gameState === "finished4" && <EndScreen4 />}
+
       </GameStateContext.Provider>
       
       </div>  
