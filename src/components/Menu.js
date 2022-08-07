@@ -57,9 +57,7 @@ export default function App() {
                 setGameState("playing");
                 }}
                 >
-              <span className="relative leading-relaxed">
-              ANFANG
-              </span>
+                ANFANG
               </button>
           </div>
 

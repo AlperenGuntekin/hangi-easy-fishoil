@@ -1,7 +1,7 @@
 import axios from "axios";
 import React from "react";
 import "../App.css";
-import { Questions4 } from "../helpers/Questions4";
+import { Question4 } from "../helpers/Question";
 import { useEffect, useState } from "react";
 import { useContext } from "react";
 import { GameStateContext } from "../helpers/Contexts";
@@ -46,8 +46,8 @@ export default function App() {
 
 
   const backQuestion = () => {
-    if (Questions4[currentQuestion].answer == optionChosen) {
-      setScore(score + 1);
+    if (Question4[currentQuestion].answer == optionChosen) {
+      setScore(score + 0);
     }
     setCurrentQuestion(currentQuestion - 1);
   };
@@ -58,26 +58,26 @@ export default function App() {
   };
 
   const nextQuestion = () => {
-    if (Questions4[currentQuestion].answer == optionChosen) {
-      setScore(score + 1);
+    if (Question4[currentQuestion].answer == optionChosen) {
+      setScore(score + 0);
     }
     setCurrentQuestion(currentQuestion + 1);
   };
 
   const finishQuiz = () => {
-    if (Questions4[currentQuestion].answerA == optionChosen) {
+    if (Question4[currentQuestion].answerA == optionChosen) {
       setGameState("playing5");
     }
-    if (Questions4[currentQuestion].answerB == optionChosen) {
+    if (Question4[currentQuestion].answerB == optionChosen) {
       setGameState("playing5");
     }
-    if (Questions4[currentQuestion].answerC == optionChosen) {
+    if (Question4[currentQuestion].answerC == optionChosen) {
       setGameState("playing5");
     }
-    if (Questions4[currentQuestion].answerD == optionChosen) {
+    if (Question4[currentQuestion].answerD == optionChosen) {
       setGameState("playing5");
     }
-    else {
+    if (Question4[currentQuestion].answerE == optionChosen) {
       setGameState("playing5");
     }
   };
@@ -108,10 +108,10 @@ export default function App() {
             <img
               alt="description of image"
               className="rounded-3xl"
-              src={Questions4[currentQuestion].images}
+              src={Question4[currentQuestion].images}
             />
             <h1 className="bg-white p-8 rounded-3xl text-gray-700 text-xl text-left">
-            {Questions4[currentQuestion].prompt}
+            {Question4[currentQuestion].prompt}
             </h1>
             <div
             onClick={createPost} 
@@ -124,7 +124,7 @@ export default function App() {
                       chooseOption("optionA");
                     }}       
                     className="relative flex items-center justify-center px-12 py-2 pt-2 text-xl rounded-3xl text-white border-primary">
-                    {Questions4[currentQuestion].optionA}
+                    {Question4[currentQuestion].optionA}
                 </button>
                 <button 
                     id="optionB" 
@@ -133,7 +133,7 @@ export default function App() {
                       chooseOption("optionB");
                     }}        
                     className="relative flex items-center justify-center px-12 py-2 pt-2 text-xl rounded-3xl text-white border-primary">
-                    {Questions4[currentQuestion].optionB}
+                    {Question4[currentQuestion].optionB}
                 </button>
                 <button 
                     id="optionC" 
@@ -142,7 +142,7 @@ export default function App() {
                       chooseOption("optionC");
                     }}       
                     className="relative flex items-center justify-center px-12 py-2 pt-2 text-xl rounded-3xl text-white border-primary">
-                    {Questions4[currentQuestion].optionC}
+                    {Question4[currentQuestion].optionC}
                 </button>
                 <button 
                     id="optionD" 
@@ -151,7 +151,7 @@ export default function App() {
                       chooseOption("optionD");
                     }}        
                     className="relative flex items-center justify-center px-12 py-2 pt-2 text-xl rounded-3xl text-white border-primary">
-                    {Questions4[currentQuestion].optionD}
+                    {Question4[currentQuestion].optionD}
                 </button>
                 <button 
                     id="optionE" 
@@ -160,10 +160,10 @@ export default function App() {
                       chooseOption("optionE");
                     }}         
                     className="relative flex items-center justify-center px-12 py-2 pt-2 text-xl rounded-3xl text-white border-primary">
-                    {Questions4[currentQuestion].optionE}
+                    {Question4[currentQuestion].optionE}
                 </button>
               <div className="flex justify-between">
-                      {currentQuestion == Questions4.length + 1 ? (
+                      {currentQuestion == Question4.length + 1 ? (
                       (
                       <button
                       className="relative text-white h-16 px-7 text-2xl rounded-full border-primary"
@@ -180,7 +180,7 @@ export default function App() {
                       >
                       <img alt="description of image" src="./back-icon.svg" className="w-6"></img>
                       </button>}
-                      {currentQuestion == Questions4.length - 1 ? (
+                      {currentQuestion == Question4.length - 1 ? (
                       <button   
                       className="relative text-white h-16 px-7 text-2xl rounded-full border-primary"
                       onClick={finishQuiz}

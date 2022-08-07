@@ -1,7 +1,7 @@
 import axios from "axios";
 import React from "react";
 import "../App.css";
-import { Questions5 } from "../helpers/Questions5";
+import { Question5 } from "../helpers/Question";
 import { useState } from "react";
 import { useContext } from "react";
 import { GameStateContext } from "../helpers/Contexts";
@@ -46,8 +46,8 @@ export default function App() {
 
 
   const backQuestion = () => {
-    if (Questions5[currentQuestion].answerA == optionChosen) {
-      setScore(score + 1);
+    if (Question5[currentQuestion].answerA == optionChosen) {
+      setScore(score + 0);
     }
     setCurrentQuestion(currentQuestion - 1);
   };
@@ -58,23 +58,20 @@ export default function App() {
   };
 
   const nextQuestion = () => {
-    if (Questions5[currentQuestion].answerA == optionChosen) {
-      setScore(score + 1);
-    }
     setCurrentQuestion(currentQuestion + 1);
   };
 
   const finishQuiz = () => {
-    if (Questions5[currentQuestion].answerA == optionChosen) {
+    if (Question5[currentQuestion].answerA == optionChosen) {
       setGameState("finished");
     }
-    if (Questions5[currentQuestion].answerB == optionChosen) {
+    if (Question5[currentQuestion].answerB == optionChosen) {
       setGameState("finished2");
     }
-    if (Questions5[currentQuestion].answerC == optionChosen) {
+    if (Question5[currentQuestion].answerC == optionChosen) {
       setGameState("finished3");
     }
-    if (Questions5[currentQuestion].answerD == optionChosen) {
+    if (Question5[currentQuestion].answerD == optionChosen) {
       setGameState("finished4");
     }
   };
@@ -88,10 +85,10 @@ export default function App() {
             <img
               alt="description of image"
               className="rounded-3xl"
-              src={Questions5[currentQuestion].images}
+              src={Question5[currentQuestion].images}
             />
             <h1 className="bg-white p-8 rounded-3xl text-gray-700 text-xl text-left">
-            {Questions5[currentQuestion].prompt}
+            {Question5[currentQuestion].prompt}
             </h1>
             <div
             onClick={createPost} 
@@ -104,7 +101,7 @@ export default function App() {
                         chooseOption("optionA");
                       }}
                     className="relative flex items-center justify-center px-12 py-2 pt-2 text-xl rounded-3xl text-white border-primary">
-                    {Questions5[currentQuestion].optionA}
+                    {Question5[currentQuestion].optionA}
                 </button>
                 <button 
                     id="optionB" 
@@ -113,7 +110,7 @@ export default function App() {
                         chooseOption("optionB");
                       }}
                     className="relative flex items-center justify-center px-12 py-2 pt-2 text-xl rounded-3xl text-white border-primary">
-                    {Questions5[currentQuestion].optionB}
+                    {Question5[currentQuestion].optionB}
                 </button>
                 <button 
                     id="optionC" 
@@ -122,7 +119,7 @@ export default function App() {
                         chooseOption("optionC");
                       }}
                     className="relative flex items-center justify-center px-12 py-2 pt-2 text-xl rounded-3xl text-white border-primary">
-                    {Questions5[currentQuestion].optionC}
+                    {Question5[currentQuestion].optionC}
                 </button>
                 <button 
                     id="optionD" 
@@ -131,10 +128,10 @@ export default function App() {
                         chooseOption("optionD");
                       }}
                     className="relative flex items-center justify-center px-12 py-2 pt-2 text-xl rounded-3xl text-white border-primary">
-                    {Questions5[currentQuestion].optionD}
+                    {Question5[currentQuestion].optionD}
                 </button>
               <div className="flex justify-between">
-                    {currentQuestion == Questions5.length + 1 ? (
+                    {currentQuestion == Question5.length + 1 ? (
                       (
                       <button
                       className="relative text-white h-16 px-7 text-2xl rounded-full border-primary"
@@ -151,7 +148,7 @@ export default function App() {
                       >
                       <img alt="description of image" src="./back-icon.svg" className="w-6"></img>
                       </button>}
-                    {currentQuestion == Questions5.length - 1 ? (
+                    {currentQuestion == Question5.length - 1 ? (
                       <button   
                       className="relative text-white h-16 px-7 text-2xl rounded-full border-primary"
                       onClick={finishQuiz}

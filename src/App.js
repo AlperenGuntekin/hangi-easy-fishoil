@@ -11,6 +11,9 @@ import EndScreen3 from "./components/EndScreen3";
 import EndScreen4 from "./components/EndScreen4";
 import { useState } from "react";
 import { GameStateContext } from "./helpers/Contexts";
+import { Question, Question2, Question3, Question4, Question5 } from "./helpers/Question";
+import EndScreens from "./components/EndScreens";
+
 
 
 // ['menu', 'playing', 'finished']
@@ -19,7 +22,8 @@ function App() {
   const [score, setScore] = useState(0);
 
   return (
-    
+
+      
     <div className="bg-background">
     <div className="container px-4 md:px-0 mx-auto py-10">
       <div className="space-y-10">
@@ -43,11 +47,11 @@ function App() {
         }}
       >
         {gameState === "menu" && <Menu />}
-        {gameState === "playing" && <Quiz />}
-        {gameState === "playing2" && <Quiz2 />}
-        {gameState === "playing3" && <Quiz3 />}
-        {gameState === "playing4" && <Quiz4 />}
-        {gameState === "playing5" && <Quiz5 />}
+        {gameState === "playing" && <Quiz Question={Question} />}
+        {gameState === "playing2" && <Quiz2 Question={Question2}/>}
+        {gameState === "playing3" && <Quiz3 Question={Question3}/>}
+        {gameState === "playing4" && <Quiz4 Question={Question4}/>}
+        {gameState === "playing5" && <Quiz5 Question={Question5}/>}
         {gameState === "finished" && <EndScreen />}
         {gameState === "finished2" && <EndScreen2 />}
         {gameState === "finished3" && <EndScreen3 />}
@@ -57,7 +61,6 @@ function App() {
       </div>  
     </div>
     </div>
-
     </div>
   );
 }

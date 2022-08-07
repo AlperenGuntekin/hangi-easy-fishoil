@@ -152,6 +152,14 @@ video {
   --tw-bg-opacity: 1;
   background-color: rgb(30 67 90/var(--tw-bg-opacity));
 }
+
+.relative:focus{
+  position: relative;
+  --tw-bg-opacity: 1;
+  background-color: grey;
+}
+
+
 .inset-0 {
   bottom: 0;
   left: 0;
@@ -533,22 +541,6 @@ video {
   .md\:w-2\/4 {
     width: 50%;
   }
-
-.relative::-moz-selection{
-  background-color: grey;
-}
-
-.relative:focus{
-  background-color: grey;
-}
-
-.relative text-xl:focus {
-  color: black;
-}
-
-.relative::selection{
-  background-color: grey;
-}
 
 .togglebuttoon{
   background-color: brown;

@@ -15,6 +15,7 @@ const EndScreen = () => {
     setGameState("menu");
   };
   return (
+
     <div className="bg-background">
       <div className="container px-4 md:px-0 mx-auto">
         <div className="space-y-0">

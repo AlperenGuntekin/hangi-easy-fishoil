@@ -1,7 +1,7 @@
 import axios from "axios";
 import React from "react";
 import "../App.css";
-import { Questions } from "../helpers/Questions";
+import { Question } from "../helpers/Question";
 import { useState } from "react";
 import { useContext } from "react";
 import { GameStateContext } from "../helpers/Contexts";
@@ -35,16 +35,16 @@ export default function App() {
       });
   }
 
+  
   if (!post) return "Loading..."
-
 
   const chooseOption = (option) => {
     setOptionChosen(option);
   };
 
   const backQuestion = () => {
-    if (Questions[currentQuestion].answer === optionChosen) {
-      setScore(score + 1);
+    if (Question[currentQuestion].answer === optionChosen) {
+      setScore(score + 0);
     }
     setCurrentQuestion(currentQuestion - 1);
   };
@@ -55,21 +55,19 @@ export default function App() {
   };
 
   const nextQuestion = () => {
-    if (Questions[currentQuestion].answer === optionChosen) {
-      setScore(score + 1);
+    if (Question[currentQuestion].answer === optionChosen) {
+      setScore(score + 0);
     }
     setCurrentQuestion(currentQuestion + 1);
   };
 
 
   const finishQuiz = () => {
-    if (Questions[currentQuestion].answer === optionChosen) {
-      setScore(score + 1);
+    if (Question[currentQuestion].answer === optionChosen) {
+      setScore(score + 0);
     }
     setGameState("playing2");
   };  
-
-  const handleChange = (val) => setValue(val);
 
   return (
     <div className="bg-background">
@@ -79,10 +77,10 @@ export default function App() {
             <img
               alt="description of image"
               className="rounded-3xl"
-              src={Questions[currentQuestion].images}
+              src={Question[currentQuestion].images}
             />
             <h1 className="bg-white p-8 rounded-3xl text-gray-700 text-xl text-left">
-            {Questions[currentQuestion].prompt}
+            {Question[currentQuestion].prompt}
             </h1>
             <div className="flex flex-col justify-center gap-2">
        {/*}     <ToggleButtonGroup type="checkbox" value={value} onChange={handleChange} className="flex flex-col justify-center gap-2">
@@ -91,34 +89,34 @@ export default function App() {
                 value={1}
                 onClick={updatePost}             
                 className="relative flex items-center justify-center h-14 px-5 pt-1 text-xl cursor-pointer rounded-full text-white border-primary">             
-                {Questions[currentQuestion].optionA}
+                {Question[currentQuestion].optionA}
               </ToggleButton>
               <ToggleButton                 
                 id="optionB" 
                 value={2}
                 className="relative flex items-center justify-center h-14 px-5 pt-1 text-xl cursor-pointer rounded-full text-white border-primary">             
-                {Questions[currentQuestion].optionB}
+                {Question[currentQuestion].optionB}
               </ToggleButton>
               <ToggleButton 
                 id="optionC" 
                 value={3}
                 onClick={updatePost}             
                 className="relative flex items-center justify-center h-14 px-5 pt-1 text-xl cursor-pointer rounded-full text-white border-primary">
-                {Questions[currentQuestion].optionC}             
+                {Question[currentQuestion].optionC}             
               </ToggleButton>
               <ToggleButton 
                 id="optionD" 
                 value={4}
                 onClick={updatePost}             
                 className="relative flex items-center justify-center h-14 px-5 pt-1 text-xl cursor-pointer rounded-full text-white border-primary">
-                {Questions[currentQuestion].optionD}             
+                {Question[currentQuestion].optionD}             
               </ToggleButton>
               <ToggleButton 
                 id="optionE" 
                 value={5}
                 onClick={updatePost}             
                 className="relative flex items-center justify-center h-14 px-5 pt-1 text-xl cursor-pointer rounded-full text-white border-primary">
-                {Questions[currentQuestion].optionE}             
+                {Question[currentQuestion].optionE}             
               </ToggleButton>
             </ToggleButtonGroup>  */}
             </div>
@@ -130,7 +128,7 @@ export default function App() {
                       chooseOption("optionA");
                     }}        
                     className="relative flex items-center justify-center h-14 px-5 pt-1 text-xl cursor-pointer rounded-full text-white border-primary">
-                    {Questions[currentQuestion].optionA}
+                    {Question[currentQuestion].optionA}
                 </button>
                 <button                
                     id="optionB" 
@@ -139,7 +137,7 @@ export default function App() {
                       chooseOption("optionB");
                     }}   
                     className="relative flex items-center justify-center h-14 px-5 pt-1 text-xl cursor-pointer rounded-full text-white border-primary">
-                    {Questions[currentQuestion].optionB}
+                    {Question[currentQuestion].optionB}
                 </button>
                 <button 
                     id="optionC" 
@@ -148,7 +146,7 @@ export default function App() {
                       chooseOption("optionC");
                     }}  
                     className="relative flex items-center justify-center h-14 px-5 pt-1 text-xl cursor-pointer rounded-full text-white border-primary">
-                    {Questions[currentQuestion].optionC}
+                    {Question[currentQuestion].optionC}
                 </button>
                 <button
                     id="optionD"
@@ -157,7 +155,7 @@ export default function App() {
                       chooseOption("optionD");
                     }}     
                     className="relative flex items-center justify-center h-14 px-5 pt-1 text-xl cursor-pointer rounded-full text-white border-primary">
-                    {Questions[currentQuestion].optionD}
+                    {Question[currentQuestion].optionD}
                 </button>
                 <button 
                     value={post.season} 
@@ -166,10 +164,10 @@ export default function App() {
                       chooseOption("optionE");
                     }}  
                     className="relative flex items-center justify-center h-14 px-5 pt-1 text-xl cursor-pointer rounded-full text-white border-primary">
-                    {Questions[currentQuestion].optionE}
+                    {Question[currentQuestion].optionE}
                 </button>
               <div className="flex justify-between">
-                  {currentQuestion === Questions.length + 1 ? (
+                  {currentQuestion === Question.length + 1 ? (
                   (
                   <button
                   className="relative text-white h-16 px-7 text-2xl rounded-full border-primary"
@@ -186,7 +184,7 @@ export default function App() {
                 >
                 <img alt="description of image" src="./back-icon.svg" className="w-6"></img>
                 </button>}
-                    {currentQuestion === Questions.length - 1 ? (
+                    {currentQuestion === Question.length - 1 ? (
                       <button   
                       className="relative text-white h-16 px-7 text-2xl rounded-full border-primary"
                       onClick={finishQuiz}
