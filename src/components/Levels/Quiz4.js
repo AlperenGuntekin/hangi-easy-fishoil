@@ -41,10 +41,10 @@ const Quiz4 = () => {
               src={Level4.image}
             />
             <h1 className="bg-white p-8 rounded-3xl text-gray-700 text-xl text-left">
-            {Level4.prompt}
+              {Level4.prompt}
             </h1>
             <div className="flex flex-col justify-center gap-2">
-            {Level4.options.map((option, i) => (
+              {Level4.options.map((option, i) => (
                 <button
                   key={i}
                   id={option.key}
@@ -57,31 +57,30 @@ const Quiz4 = () => {
                 </button>
               ))}
               <div className="flex justify-between">
-                  <button
+                <button
                   className="relative text-white h-16 px-7 text-2xl rounded-full border-primary"
                   onClick={goPrev}
                   id="prevQuestion"
-                  >
+                >
                   <img
-                  alt="description of image"
-                  src="./back-icon.svg"
-                  className="w-6">
-                  </img>
-                  </button>
-      
-                  <button
-                className="relative text-white h-16 px-7 text-2xl rounded-full border-primary"
-                onClick={goNext}
-                disabled={processing || optionChosen === ""}
-                id="nextQuestion"
-              >
-                <img
-                  alt="description of image"
-                  src="./next-icon.svg"
-                  className="w-6"
-                ></img>
-              </button>
+                    alt="description of image"
+                    src="./back-icon.svg"
+                    className="w-6"
+                  ></img>
+                </button>
 
+                <button
+                  className="relative text-white h-16 px-7 text-2xl rounded-full border-primary"
+                  onClick={goNext}
+                  disabled={processing || optionChosen === ""}
+                  id="nextQuestion"
+                >
+                  <img
+                    alt="description of image"
+                    src="./next-icon.svg"
+                    className="w-6"
+                  ></img>
+                </button>
               </div>
             </div>
           </div>
@@ -89,6 +88,6 @@ const Quiz4 = () => {
       </div>
     </div>
   );
-}
+};
 
 export default Quiz4;

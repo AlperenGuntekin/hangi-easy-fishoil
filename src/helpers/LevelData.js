@@ -40,34 +40,15 @@ export const LevelData = {
     ],
   },
   Level5: {
+    skor1: 4,
     image: "./06-soru5_onceliginiz.jpg",
     prompt: "Was ist Ihre Priorität?",
     options: [
-      { answerA: "option1", key: "option1", value: "Ich möchte, dass mein Kind die ideale Dosis von Omega-3 und Vitamin D mit einem Mal erhält." },
-      { answerB: "option2", key: "option2", value: "Ich suche ein Nahrungsergänzungsmittel mit besonderer Formulierung für mein Kind, welches das Immunsystem unterstützt." },
-      { answerC: "option3", key: "option3", value: "Ich finde es wichtig, dass mein Kind Vitamine einnimmt, damit sie die tägliche Ernährung unterstützt." },
-      { answerD: "option4", key: "option4", value: "Ich suche ein Nahrungsergänzungsmittel für mein Kind, welches die Gehirnfunktionen mit seiner besonderen Formulierung unterstützt." },
+      { key: "option1", value: "Ich möchte, dass mein Kind die ideale Dosis von Omega-3 und Vitamin D mit einem Mal erhält." },
+      { key: "option2", value: "Ich suche ein Nahrungsergänzungsmittel mit besonderer Formulierung für mein Kind, welches das Immunsystem unterstützt." },
+      { key: "option3", value: "Ich finde es wichtig, dass mein Kind Vitamine einnimmt, damit sie die tägliche Ernährung unterstützt." },
+      { key: "option4", value: "Ich suche ein Nahrungsergänzungsmittel für mein Kind, welches die Gehirnfunktionen mit seiner besonderen Formulierung unterstützt." },
     ],
   },
   
 };
-
-
-// export const Question5 = [
-//   {
-//     images: "./06-soru5_onceliginiz.jpg",
-//     prompt: "Was ist Ihre Priorität?",
-//     optionA:
-//       "Ich möchte, dass mein Kind die ideale Dosis von Omega-3 und Vitamin D mit einem Mal erhält.",
-//     optionB:
-//       "Ich suche ein Nahrungsergänzungsmittel mit besonderer Formulierung für mein Kind, welches das Immunsystem unterstützt.",
-//     optionC:
-//       "Ich finde es wichtig, dass mein Kind Vitamine einnimmt, damit sie die tägliche Ernährung unterstützt.",
-//     optionD:
-//       "Ich suche ein Nahrungsergänzungsmittel für mein Kind, welches die Gehirnfunktionen mit seiner besonderen Formulierung unterstützt.",
-//     answerA: "optionA",
-//     answerB: "optionB",
-//     answerC: "optionC",
-//     answerD: "optionD",
-//   },
-// ];
