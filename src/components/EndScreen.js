@@ -3,7 +3,7 @@ import "../App.css";
 import { useContext } from "react";
 import { GameStateContext } from "../helpers/Contexts";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Question } from "../helpers/Question";
+import { LevelData } from "../helpers/LevelData";
 
 
 const EndScreen = () => {
@@ -15,6 +15,7 @@ const EndScreen = () => {
     setScore(0);
     setGameState("menu");
   };
+
 
   function Answers(props) {
     if (score === 1) {
@@ -205,3 +206,4 @@ const EndScreen = () => {
 };
 
 export default EndScreen;
+
